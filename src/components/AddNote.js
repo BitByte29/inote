@@ -18,7 +18,7 @@ const AddNote = () => {
   };
   return (
     <div>
-      <h1>Add your notes.</h1>
+      <h3>Add your notes.</h3>
       <div className="my-4">
         <form>
           <div className="form-group my-3">

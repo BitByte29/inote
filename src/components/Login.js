@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NoteContext from "../context/notes/NoteContext";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  let context = useContext(NoteContext);
+  const { setUser, setTheAlert } = context;
   let naviagate = useNavigate();
 
   const onChange = (e) => {
@@ -10,7 +13,7 @@ const Login = () => {
   };
 
   const login = async (email, password) => {
-    const response = await fetch(`http://localhost:3001/api/user/login`, {
+    const response = await fetch(`http://127.0.0.1:3001/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,12 +21,28 @@ const Login = () => {
       body: JSON.stringify({ email, password }),
     });
     const json = await response.json();
+
+    if (response.status !== 200) {
+      // return alert(json.message);
+      setTheAlert("Invalid credentials", "danger");
+      return;
+    }
     if (response.status === 200) {
       localStorage.setItem("token", json.token);
+      setTheAlert("Logged in Successfully", "success");
+      let token = localStorage.getItem("token");
+      const detailsres = await fetch(`http://127.0.0.1:3001/api/user/getuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+      });
+      let json2 = await detailsres.json();
+      setUser(json2.name);
       naviagate("/home");
     } else {
-      // Alert
-      alert("not good");
+      setTheAlert("Invalid credentials", "danger");
     }
   };
   const handleSubmit = (e) => {

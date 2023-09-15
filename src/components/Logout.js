@@ -6,7 +6,8 @@ const Logout = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    localStorage.setItem("token", "");
+    // localStorage.setItem("token", "");
+    localStorage.removeItem("token");
     navigate("/");
   };
   return (

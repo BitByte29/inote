@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./components/Home";
@@ -11,15 +11,29 @@ import NoteState from "./context/notes/NoteState";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Logout from "./components/Logout";
+import Alert from "./components/Alert";
 
 // import Alert from "./components/Alert";
 
 function App() {
+  useEffect(() => {
+    window.addEventListener("beforeunload", function (e) {
+      localStorage.clear();
+    });
+
+    return () => {
+      window.removeEventListener("beforeunload", function (e) {
+        localStorage.clear();
+      });
+    };
+  }, []);
+
   return (
     <>
       <NoteState>
         <Router>
           <Navbar />
+          <Alert />
           <div className="container ">
             <Routes>
               <Route path="/about" element={<About />} />
@@ -28,7 +42,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/logout" element={<Logout />} />
-
               <Route path="/" element={<>Welcome to iNotebook</>} />
             </Routes>
           </div>

@@ -17,6 +17,7 @@ function NoteItem(props) {
               className="fas fa-edit mx-2"
               onClick={() => updateNote(note)}
             ></i>
+
             <i
               className="far fa-trash-alt mx-2"
               onClick={() => deleteNote(note._id)}

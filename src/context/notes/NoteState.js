@@ -3,12 +3,29 @@ import NoteContext from "./NoteContext";
 // import token from "./../users/UserContext";
 
 const NoteState = (props) => {
-  const host = "http://localhost:3001";
+  const host = "http://127.0.0.1:3001";
+  const [user, setUser] = useState("");
   const [notes, setNotes] = useState([]);
   const [errors, setErrors] = useState("");
-  // const defaultAuth = token;
-  const token = localStorage.getItem("token");
+  const [alert, setAlert] = useState({
+    message: "",
+    type: "",
+  });
+
+  const setTheAlert = (message, type) => {
+    setAlert({ message, type });
+  };
+  const removeAlert = () => {
+    setAlert({
+      message: "",
+      type: "",
+    });
+  };
+
+  // const token = localStorage.getItem("token");
   const getAllNotes = async () => {
+    const token = localStorage.getItem("token");
+
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
@@ -24,6 +41,8 @@ const NoteState = (props) => {
 
   //Add a note
   const addNote = async (title, description, tag = "default") => {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(`${host}/api/notes/addnote`, {
         method: "POST",
@@ -34,14 +53,21 @@ const NoteState = (props) => {
         body: JSON.stringify({ title, description, tag }),
       });
       //Return the object of when new note is created which has status and data
+      let json = await response.json();
       if (response.status !== 201) {
-        let json = await response.json();
         setErrors(json.message);
+        setAlert({
+          message: json.message,
+          type: "danger",
+        });
         console.log(errors);
       } else {
-        const newNote = await response.json();
+        const newNote = json;
         setNotes(notes.concat(newNote.data));
-        setErrors("");
+        setAlert({
+          message: "Note added successfully",
+          type: "success",
+        });
       }
     } catch (err) {
       console.log(err);
@@ -49,6 +75,8 @@ const NoteState = (props) => {
   };
 
   const deleteNote = async (id) => {
+    const token = localStorage.getItem("token");
+
     const newList = notes.filter((note) => {
       return note._id !== id;
     });
@@ -61,9 +89,15 @@ const NoteState = (props) => {
       },
     });
     console.log("Deleted item with ", id);
+    setAlert({
+      message: "Note deleted",
+      type: "warning",
+    });
   };
 
   const editNote = async (id, title, description, tag) => {
+    const token = localStorage.getItem("token");
+
     const newNotes = JSON.parse(JSON.stringify(notes));
     for (let i = 0; i < newNotes.length; i++) {
       if (newNotes[i]._id === id) {
@@ -81,6 +115,10 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
+    setAlert({
+      message: "Note Edited",
+      type: "primary",
+    });
   };
 
   return (
@@ -91,7 +129,11 @@ const NoteState = (props) => {
         deleteNote,
         editNote,
         getAllNotes,
-        errors,
+        user,
+        setUser,
+        alert,
+        setTheAlert,
+        removeAlert,
       }}
     >
       {props.children}

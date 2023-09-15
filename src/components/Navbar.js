@@ -65,19 +65,20 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            {localStorage.token !== null ? (
+
+            {localStorage.getItem("token") ? (
+              <div>
+                <Link className="btn btn-primary mx-2" to="/logout">
+                  Logout
+                </Link>
+              </div>
+            ) : (
               <div className="d-flex ">
                 <Link className="btn btn-warning mx-2" to="/signup">
                   Sign up
                 </Link>
                 <Link className="btn btn-success mx-2" to="/login">
                   Login
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link className="btn btn-primary mx-2" to="/logout">
-                  Logout
                 </Link>
               </div>
             )}
