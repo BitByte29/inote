@@ -8,7 +8,11 @@ import Navbar from "./components/Navbar";
 import User from "./components/User";
 import About from "./components/About";
 import NoteState from "./context/notes/NoteState";
-import Alert from "./components/Alert";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Logout from "./components/Logout";
+
+// import Alert from "./components/Alert";
 
 function App() {
   return (
@@ -16,15 +20,16 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <Alert message="Data added" />
           <div className="container ">
-            <h1>Welcome to iNotebook</h1>
-
             <Routes>
               <Route path="/about" element={<About />} />
               <Route path="/user" element={<User />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/" element={<>This is nothing</>} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/logout" element={<Logout />} />
+
+              <Route path="/" element={<>Welcome to iNotebook</>} />
             </Routes>
           </div>
         </Router>

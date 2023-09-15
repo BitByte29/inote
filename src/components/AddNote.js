@@ -3,13 +3,14 @@ import noteContext from "./../context/notes/NoteContext";
 
 const AddNote = () => {
   const context = useContext(noteContext);
-  const { addNote } = context;
+  const { addNote, errors } = context;
 
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
+    setNote({ title: "", description: "", tag: "" });
   };
 
   const onChange = (e) => {
@@ -29,17 +30,23 @@ const AddNote = () => {
               id="title"
               name="title"
               placeholder="Enter Title"
+              minLength={5}
+              required
+              value={note.title}
             />
           </div>
           <div className="form-group my-3">
             <label htmlFor="description">Add description</label>
-            <textarea
+            <input
               onChange={onChange}
               type="text"
               className="form-control "
               id="description"
               name="description"
               placeholder="Enter description"
+              value={note.description}
+              minLength={5}
+              required
             />
           </div>
           <div className="form-group my-3">
@@ -50,7 +57,9 @@ const AddNote = () => {
               className="form-control"
               id="tag"
               name="tag"
+              value={note.tag}
               placeholder="Enter Tag"
+
               // value={"general"}
             />
           </div>
@@ -63,6 +72,7 @@ const AddNote = () => {
           </button>
         </form>
       </div>
+      <p>{errors}</p>
     </div>
   );
 };
