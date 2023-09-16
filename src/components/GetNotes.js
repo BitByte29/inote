@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import noteContext from "./../context/notes/NoteContext";
 import NoteItem from "./NoteItem";
+import "./../styles/form.css";
 // import { useNavigate } from "react-router-dom";
 
 const GetNotes = () => {
@@ -21,7 +22,13 @@ const GetNotes = () => {
   const handleClick = (e) => {
     e.preventDefault();
     // console.log(enote._id, enote.etitle, enote.edescription, enote.etag);
-    editNote(enote._id, enote.etitle, enote.edescription, enote.etag);
+    editNote(
+      enote._id,
+      enote.etitle,
+      enote.edescription,
+      enote.etag,
+      new Date().toISOString()
+    );
     refClose.current.click();
   };
 
@@ -41,6 +48,7 @@ const GetNotes = () => {
       etag: currentNote.tag,
     });
   };
+  const modalStyle = { color: "white", backgroundColor: "#19376D" };
   return (
     <>
       <button
@@ -50,7 +58,7 @@ const GetNotes = () => {
         data-bs-target="#exampleModal"
         ref={ref}
       >
-        Launch demo modal
+        Launch
       </button>
       <div
         className="modal"
@@ -60,7 +68,7 @@ const GetNotes = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
+          <div className="modal-content" style={modalStyle}>
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 Edit Note
@@ -141,24 +149,17 @@ const GetNotes = () => {
         </div>
       </div>
 
-      <h2>
-        Your notes: {notes.length === 0 ? "No notes to display" : notes.length}
-      </h2>
-
-      <div className="row">
+      <div className="">
+        <h3>
+          Your notes:{" "}
+          {notes.length === 0 ? "No notes to display" : notes.length}
+        </h3>
         {notes.map((note) => {
           return (
             <NoteItem note={note} key={note._id} updateNote={updateNote} />
           );
         })}
       </div>
-      {/* {Array.isArray(notes) ? (
-        notes.map((note) => (
-          <NoteItem note={note} key={note._id} updateNote={updateNote} />
-        ))
-      ) : (
-        <p>No notes to display</p>
-      )} */}
     </>
   );
 };

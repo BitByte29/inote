@@ -7,6 +7,8 @@ const NoteState = (props) => {
   const [user, setUser] = useState("");
   const [notes, setNotes] = useState([]);
   const [errors, setErrors] = useState("");
+  const [userDetails, setUserDetails] = useState(null);
+
   const [alert, setAlert] = useState({
     message: "",
     type: "",
@@ -95,7 +97,7 @@ const NoteState = (props) => {
     });
   };
 
-  const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag, editdate) => {
     const token = localStorage.getItem("token");
 
     const newNotes = JSON.parse(JSON.stringify(notes));
@@ -104,6 +106,8 @@ const NoteState = (props) => {
         newNotes[i].title = title;
         newNotes[i].description = description;
         newNotes[i].tag = tag;
+        newNotes[i].editdate = editdate;
+        console.log(newNotes);
       }
     }
     setNotes(newNotes);
@@ -113,7 +117,7 @@ const NoteState = (props) => {
         "Content-Type": "application/json",
         "auth-token": token,
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({ title, description, tag, editdate }),
     });
     setAlert({
       message: "Note Edited",
@@ -131,6 +135,8 @@ const NoteState = (props) => {
         getAllNotes,
         user,
         setUser,
+        userDetails,
+        setUserDetails,
         alert,
         setTheAlert,
         removeAlert,

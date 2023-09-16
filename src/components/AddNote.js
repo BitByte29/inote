@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import noteContext from "./../context/notes/NoteContext";
+import "./../styles/form.css";
 
 const AddNote = () => {
   const context = useContext(noteContext);
@@ -19,14 +20,14 @@ const AddNote = () => {
   return (
     <div>
       <h3>Add your notes.</h3>
-      <div className="my-4">
+      <div className="formdiv" style={{ boxShadow: "none" }}>
         <form>
-          <div className="form-group my-3">
+          <div className="form-element">
             <label htmlFor="title">Add a Title</label>
             <input
               onChange={onChange}
               type="text"
-              className="form-control"
+              className=""
               id="title"
               name="title"
               placeholder="Enter Title"
@@ -35,12 +36,12 @@ const AddNote = () => {
               value={note.title}
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-element">
             <label htmlFor="description">Add description</label>
             <input
               onChange={onChange}
               type="text"
-              className="form-control "
+              className=" "
               id="description"
               name="description"
               placeholder="Enter description"
@@ -49,12 +50,12 @@ const AddNote = () => {
               required
             />
           </div>
-          <div className="form-group my-3">
+          <div className="form-element">
             <label htmlFor="tag">Add a Tag</label>
             <input
               onChange={onChange}
               type="text"
-              className="form-control"
+              className=""
               id="tag"
               name="tag"
               value={note.tag}
@@ -63,13 +64,15 @@ const AddNote = () => {
               // value={"general"}
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary my-3"
-            onClick={handleClick}
-          >
-            Submit
-          </button>
+          <div className="form-element">
+            <button
+              type="submit"
+              className="btn btn-success"
+              onClick={handleClick}
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
       <p>{errors}</p>

@@ -1,0 +1,23 @@
+/* Notes.css */
+.notes-container {
+    display: flex;
+    flex-direction: row; 
+    width: 80vw;
+  
+    @media (max-width: 768px) {
+      flex-direction: column; 
+    }
+  }
+  
+  .addNotes {
+    flex: 1; 
+    padding: 16px;
+
+
+  }
+  
+  .getNotes {
+    flex: 1; 
+    padding: 16px;
+  }
+  

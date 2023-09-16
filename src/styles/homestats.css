@@ -1,0 +1,23 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+h1 {
+    font-size: 38px;
+    color: rgb(211, 211, 0);
+  }
+  
+  p {
+    /* font-size: 16px; */
+    color: white;
+  }
+  
+  span.highlight {
+    font-weight: bold;
+    color: cyan;
+    font-size: 20px;
+  }

@@ -1,0 +1,33 @@
+.top-part,.bottom-part{
+    display: flex;
+    flex-direction: row;
+justify-content: space-between;
+}
+.title{
+    display: inline-block;
+    color:white
+}
+
+.tag{
+    padding: .3rem .5rem;
+    color: white;
+    background-color: green;
+    border-radius: 10px;
+}
+
+.edited{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    margin: -10px 0 0 0 ;
+}
+
+span.timeframe{
+    font-weight: 500;
+}
+
+.card-body{
+    background-color: var(--sec-dark);
+    color: var(--primary-light);
+}

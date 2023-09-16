@@ -18,7 +18,11 @@ const Alert = (props) => {
   }, [alert.message, removeAlert]);
 
   return (
-    <div className={`alert alert-${alert.type} `} role="alert">
+    <div
+      className={`alert alert-${alert.type} `}
+      style={{ height: "3.5rem" }}
+      role="alert"
+    >
       {alert.message}
     </div>
   );
