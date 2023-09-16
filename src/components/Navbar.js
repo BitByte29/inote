@@ -1,91 +1,94 @@
-// import React, { useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import "./../styles/Navbar.css";
 
-//Added active class based using useLocation Hook / useEffect to display the location.pathname when location is changes
 const Navbar = () => {
   let location = useLocation();
-  // useEffect(() => {
-  //   console.log(location.pathname);
-  // }, [location]);
+
   return (
-    <div>
-      <nav
-        className="navbar  navbar-expand-lg bg-body-tertiary"
-        data-bs-theme="dark"
-      >
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            iNotebook
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link
-                  className={`nav-link  ${
-                    location.pathname === "/home" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  to="/home"
-                >
-                  {" "}
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={`nav-link  ${
-                    location.pathname === "/about" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  to="/about"
-                >
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={`nav-link  ${
-                    location.pathname === "/user" ? "active" : ""
-                  }`}
-                  aria-current="page"
-                  to="/user"
-                >
-                  User
-                </Link>
-              </li>
-            </ul>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <Link className="navbar-brand" to="/">
+          iNotebook
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ms-auto">
+            <li
+              className={`nav-item ${
+                location.pathname === "/home" ? "active" : ""
+              }`}
+            >
+              <Link className="nav-link" to="/home">
+                Home
+              </Link>
+            </li>
+            <li
+              className={`nav-item ${
+                location.pathname === "/about" ? "active" : ""
+              }`}
+            >
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
+            </li>
+            <li
+              className={`nav-item ${
+                location.pathname === "/user" ? "active" : ""
+              }`}
+            >
+              <Link className="nav-link" to="/user">
+                User
+              </Link>
+            </li>
 
             {localStorage.getItem("token") ? (
-              <div>
-                <Link className="btn btn-primary mx-2" to="/logout">
+              <li
+                className={`nav-item ${
+                  location.pathname === "/logout" ? "active" : ""
+                }`}
+              >
+                <Link className="nav-link" to="/logout">
                   Logout
                 </Link>
-              </div>
+              </li>
             ) : (
-              <div className="d-flex ">
-                <Link className="btn btn-warning mx-2" to="/signup">
-                  Sign up
-                </Link>
-                <Link className="btn btn-success mx-2" to="/login">
-                  Login
-                </Link>
-              </div>
+              <>
+                <li
+                  className={`nav-item ${
+                    location.pathname === "/signup" ? "active" : ""
+                  }`}
+                >
+                  <Link className="nav-link" to="/signup">
+                    Sign up
+                  </Link>
+                </li>
+
+                <li
+                  className={`nav-item ${
+                    location.pathname === "/login" ? "active" : ""
+                  }`}
+                >
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                </li>
+              </>
             )}
-          </div>
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 

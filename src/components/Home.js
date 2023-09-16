@@ -16,6 +16,8 @@ export default function Home() {
     <div className="">
       <h2>Login to start using you cloud notebook..</h2>
       <Link to={"/login"}>Login Here</Link>
+      <h3>Do not have an account?</h3>
+      <Link to={"/signup"}>Sign Up Here</Link>
     </div>
   );
 }

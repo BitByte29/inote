@@ -1,13 +1,14 @@
 .formdiv{
     /* background: #aaa; */
-    border-radius: 2rem;
+    /* border-radius: 2rem; */
+    border-radius: 2rem 0 2rem 0;
     min-width: 250px;
     min-height: 250px;
-    width: 500px;
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: .8rem;
     box-shadow:  2px 0 0 limegreen, -2px 0 0 limegreen;
     /* box-shadow: 5px 5px 10px 0px red; */
 
@@ -25,7 +26,7 @@ form{
     display: flex;
     flex-direction: column;
     margin: 2rem;
-    color: white;
+    color: var(--primary-light);
 }
 
 .form-element > input {
@@ -33,9 +34,11 @@ form{
     outline: none;
     margin-top: .3rem;
     border: 0;
-    border-bottom: 2px solid var(--primary-light);
+    border-bottom: 1px solid var(--primary-light);
+
     color: var(--primary-light);
-    
+    transition: border-bottom 0.3s; 
+
 }
 
 .form-element > input:focus{

@@ -64,7 +64,7 @@ const Login = () => {
               className=""
               id="email"
               name="email"
-              placeholder="Enter email"
+              //placeholder="Enter email"
             />
           </div>
           <div className="form-element">
@@ -89,7 +89,7 @@ const Login = () => {
               className=""
               id="password"
               name="password"
-              placeholder="Password"
+              //placeholder="Password"
               autoComplete="new-password"
             />
           </div>
@@ -110,7 +110,7 @@ const Login = () => {
               id="email"
               name="email"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              //placeholder="Enter email"
             />
             <small id="emailHelp" className="form-text text-muted">
               We'll never share your email with anyone else.
@@ -124,7 +124,7 @@ const Login = () => {
               className="form-control password"
               id="password"
               name="password"
-              placeholder="Password"
+              //placeholder="Password"
             />
           </div>
           <button className="btn btn-primary">Login</button>

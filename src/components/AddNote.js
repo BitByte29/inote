@@ -30,7 +30,7 @@ const AddNote = () => {
               className=""
               id="title"
               name="title"
-              placeholder="Enter Title"
+              //placeholder="Enter Title"
               minLength={5}
               required
               value={note.title}
@@ -44,7 +44,7 @@ const AddNote = () => {
               className=" "
               id="description"
               name="description"
-              placeholder="Enter description"
+              //placeholder="Enter description"
               value={note.description}
               minLength={5}
               required
@@ -59,7 +59,7 @@ const AddNote = () => {
               id="tag"
               name="tag"
               value={note.tag}
-              placeholder="Enter Tag"
+              //placeholder="Enter Tag"
 
               // value={"general"}
             />

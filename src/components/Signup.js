@@ -21,14 +21,18 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password } = credentials;
+    const { name, email, password, cpassword } = credentials;
     const response = await fetch(`http://localhost:3001/api/user/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, cpassword }),
     });
+    if (password !== cpassword) {
+      setTheAlert("Password does not match", "danger");
+      return;
+    }
     const json = await response.json();
     if (response.status === 200) {
       console.log("User created");
@@ -51,7 +55,7 @@ const Signup = () => {
               onChange={onChange}
               name="name"
               aria-describedby="emailHelp"
-              placeholder="Enter Name"
+              //placeholder="Enter Name"
               autoFocus
             />
           </div>
@@ -63,7 +67,7 @@ const Signup = () => {
               onChange={onChange}
               name="email"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              //placeholder="Enter email"
             />
           </div>
           <div className="form-element">
@@ -87,7 +91,7 @@ const Signup = () => {
               onChange={onChange}
               id="password"
               name="password"
-              placeholder="Password"
+              //placeholder="Password"
               autoComplete="new-password"
             />
           </div>
@@ -104,7 +108,7 @@ const Signup = () => {
               type={type}
               id="cpassword"
               name="cpassword"
-              placeholder="Password"
+              //placeholder="Password"
               autoComplete="new-password"
             />
           </div>
