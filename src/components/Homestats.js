@@ -2,6 +2,7 @@ import React from "react";
 import "./../styles/homestats.css"; // Import the CSS file
 
 const Homestats = (props) => {
+  props.fetchData();
   return (
     <div className="main">
       <h1>

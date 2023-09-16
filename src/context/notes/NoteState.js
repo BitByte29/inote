@@ -3,7 +3,7 @@ import NoteContext from "./NoteContext";
 // import token from "./../users/UserContext";
 
 const NoteState = (props) => {
-  const host = "http://127.0.0.1:3001";
+  const host = process.env.REACT_APP_HOST;
   const [user, setUser] = useState("");
   const [notes, setNotes] = useState([]);
   const [errors, setErrors] = useState("");
@@ -134,6 +134,7 @@ const NoteState = (props) => {
         editNote,
         getAllNotes,
         user,
+        host,
         setUser,
         userDetails,
         setUserDetails,

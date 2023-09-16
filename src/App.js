@@ -18,21 +18,23 @@ import Homestats from "./components/Homestats";
 
 function App() {
   const [totalStats, setTotalStats] = useState({ userCount: 0, noteCount: 0 });
+  async function fetchData() {
+    try {
+      const response = await fetch(
+        `https://notetaker-yzz5.onrender.com/api/user/getcount`
+      );
+      const data = await response.json();
+
+      setTotalStats(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("beforeunload", function (e) {
       localStorage.clear();
     });
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:3001/api/user/getcount");
-        const data = await response.json();
-
-        setTotalStats(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
 
     fetchData();
 
@@ -57,7 +59,10 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/logout" element={<Logout />} />
-              <Route path="/" element={<Homestats total={totalStats} />} />
+              <Route
+                path="/"
+                element={<Homestats total={totalStats} fetchData={fetchData} />}
+              />
             </Routes>
           </div>
         </Router>

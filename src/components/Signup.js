@@ -5,7 +5,7 @@ import NoteContext from "../context/notes/NoteContext";
 import "./../styles/form.css";
 const Signup = () => {
   const context = useContext(NoteContext);
-  const { setTheAlert } = context;
+  const { setTheAlert, host } = context;
   const [type, setType] = useState("password");
 
   const [credentials, setCredentials] = useState({
@@ -22,7 +22,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, cpassword } = credentials;
-    const response = await fetch(`http://localhost:3001/api/user/signup`, {
+    const response = await fetch(`${host}/api/user/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

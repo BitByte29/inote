@@ -5,7 +5,7 @@ import "./../styles/form.css";
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let context = useContext(NoteContext);
-  const { setUser, setTheAlert, setUserDetails } = context;
+  const { setUser, setTheAlert, setUserDetails, host } = context;
   let naviagate = useNavigate();
 
   const [type, setType] = useState("password");
@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   const login = async (email, password) => {
-    const response = await fetch(`http://127.0.0.1:3001/api/user/login`, {
+    const response = await fetch(`${host}/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const Login = () => {
       localStorage.setItem("token", json.token);
       setTheAlert("Logged in Successfully", "success");
       let token = localStorage.getItem("token");
-      const detailsres = await fetch(`http://127.0.0.1:3001/api/user/getuser`, {
+      const detailsres = await fetch(`${host}/api/user/getuser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,38 +98,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-
-      {/* <div className="container my-3">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              onChange={onChange}
-              className="form-control"
-              id="email"
-              name="email"
-              aria-describedby="emailHelp"
-              //placeholder="Enter email"
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              onChange={onChange}
-              className="form-control password"
-              id="password"
-              name="password"
-              //placeholder="Password"
-            />
-          </div>
-          <button className="btn btn-primary">Login</button>
-        </form>
-      </div> */}
     </>
   );
 };
