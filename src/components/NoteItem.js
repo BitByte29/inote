@@ -22,41 +22,41 @@ function NoteItem(props) {
 
   return (
     <>
-      <div className="col-md-12 my-3">
-        <div className="card">
-          <div className="card-body">
-            <div className="top-part">
-              <h4 className="title">{note.title}</h4>
-              {note.tag && <p className="tag">{note.tag}</p>}
-            </div>
-            <p>{note.description}</p>
-            <div className="bottom-part">
-              <div className="buttons">
-                <i
-                  className="fas fa-edit mx-2"
-                  onClick={() => updateNote(note)}
-                ></i>
-
-                <i
-                  className="far fa-trash-alt mx-2"
-                  onClick={() => deleteNote(note._id)}
-                ></i>
-              </div>
-              <p>
-                <span className="timeframe">Created at: </span>
-                {getDateTime(note.date)}
-              </p>
-            </div>
-            {note.editdate ? (
-              <p className="edited">
-                {" "}
-                <span className="timeframe">Edited at:</span>{" "}
-                {getDateTime(note.editdate)}
-              </p>
-            ) : null}
+      {/* <div className="col-md-12 my-3"> */}
+      <div className="card my-3">
+        <div className="card-body">
+          <div className="top-part">
+            <h4 className="title">{note.title}</h4>
+            {note.tag && <p className="tag">{note.tag}</p>}
           </div>
+          <p>{note.description}</p>
+          <div className="bottom-part">
+            <div className="buttons">
+              <i
+                className="fas fa-edit mx-2"
+                onClick={() => updateNote(note)}
+              ></i>
+
+              <i
+                className="far fa-trash-alt mx-2"
+                onClick={() => deleteNote(note._id)}
+              ></i>
+            </div>
+            <p className="small">
+              <span className="timeframe">Created at: </span>
+              {getDateTime(note.date)}
+            </p>
+          </div>
+          {note.editdate ? (
+            <p className="small edited">
+              {" "}
+              <span className="timeframe">Edited at:</span>{" "}
+              {getDateTime(note.editdate)}
+            </p>
+          ) : null}
         </div>
       </div>
+      {/* </div> */}
     </>
   );
 }

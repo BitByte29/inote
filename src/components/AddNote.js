@@ -5,9 +5,7 @@ import "./../styles/form.css";
 const AddNote = () => {
   const context = useContext(noteContext);
   const { addNote, errors } = context;
-
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
-
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
@@ -20,7 +18,10 @@ const AddNote = () => {
   return (
     <div>
       <h3>Add your notes.</h3>
-      <div className="formdiv" style={{ boxShadow: "none" }}>
+      <div
+        className="formdiv"
+        style={{ boxShadow: "none", fontSize: "1.2rem" }}
+      >
         <form>
           <div className="form-element">
             <label htmlFor="title">Add a Title</label>
